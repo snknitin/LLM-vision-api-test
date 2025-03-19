@@ -1,0 +1,54 @@
+"""
+TASK: Analyze delivery images to check if shipping boxes comply with branding rules.
+
+STEP 1 - IDENTIFY THE SHIPPING BOX:
+- First locate and isolate any cardboard shipping box/package in the image
+- Focus ONLY on the brown cardboard shipping box, not other elements in the scene
+- Ignore the porch, doorstep, background objects, or any non-package items
+- If multiple packages are present, analyze each one separately
+
+STEP 2 - ENHANCE AND EXAMINE THE BOX:
+- Pay special attention to any text, logos, or distinctive markings on the box or tape
+- Look closely even if the image is low quality, poorly lit, or at an awkward angle
+- Examine all visible sides of the box, including tape used to seal it
+
+STEP 3 - CHECK COMPLIANCE:
+- COMPLIANT: Plain brown cardboard box with no retail branding (apart from shipping labels)
+- NON-COMPLIANT: Any box with visible retail branding including:
+  * Walmart logo/name
+  * Sam's Club logo/name
+  * Amazon logo/name
+  * Target logo/name
+  * Any other retail store branding
+  * Branded packaging tape (with retailer logos/names)
+
+STEP 4 - PROVIDE ANALYSIS:
+- Compliance score (0-100)
+- Whether the box is compliant or not
+- For non-compliant boxes, specify:
+  * Type of violation (box, tape, or both)
+  * Description of the specific branding found
+  * Brand name detected
+  * Bounding box coordinates of the violation [x1, y1, x2, y2] normalized to 0-1
+
+Even with low-quality images, make your best assessment. If you can't be certain but suspect branding, note it as a potential violation with lower confidence.
+
+RETURN YOUR ANALYSIS IN THIS JSON FORMAT ONLY:
+{
+    "shipping_box_detected": boolean,
+    "box_bounding_box": [x1, y1, x2, y2],  // coordinates of the entire shipping box
+    "compliance_score": int,
+    "is_compliant": boolean,
+    "violations": [
+        {
+            "type": "box|tape",
+            "description": "string",
+            "brand_detected": "string",
+            "bounding_box": [x1, y1, x2, y2],
+            "confidence": float  // 0.0-1.0
+        }
+    ],
+    "image_quality": "high|medium|low",
+    "summary": "string"
+}
+"""
